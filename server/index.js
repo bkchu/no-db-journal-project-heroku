@@ -7,7 +7,7 @@ const journalController = require(`${__dirname}/controllers/journal_controller`)
 const app = express();
 
 app.use(json());
-app.use(express.static(path.join(__dirname, "../build")));
+app.use(express.static("../build"));
 
 const baseUrl = "/api/journal";
 app.post(baseUrl, journalController.addPost);
