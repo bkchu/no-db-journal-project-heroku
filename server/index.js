@@ -1,5 +1,6 @@
 const express = require("express");
 const { json } = require("body-parser");
+
 const path = require("path");
 
 const journalController = require(`${__dirname}/controllers/journal_controller`);
