@@ -36,12 +36,6 @@ class Gallery extends Component {
         }`
       )
       .then(res => {
-        console.log("res.data.urls.full,: ", res.data.urls.full);
-        console.log("res.data.user.name,: ", res.data.user.name);
-        console.log(
-          "res.data.links.download_location: ",
-          res.data.links.download_location
-        );
         this.props.onImageSelect(
           res.data.urls.full,
           res.data.user.name,
