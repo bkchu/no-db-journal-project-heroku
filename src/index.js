@@ -5,7 +5,6 @@ import "./styles/reset.css";
 import "./styles/index.css";
 import "./styles/animation.css";
 import App from "./components/App";
-import registerServiceWorker from "./registerServiceWorker";
 
 ReactDOM.render(
   <Router>
@@ -13,4 +12,3 @@ ReactDOM.render(
   </Router>,
   document.getElementById("root")
 );
-registerServiceWorker();
