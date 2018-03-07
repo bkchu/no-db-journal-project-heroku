@@ -12,7 +12,7 @@ class FullPost extends Component {
     this.state = {
       selected: null,
       deleteConfirm: 0,
-      doesntExist: null
+      doesntExist: false
     };
   }
 
@@ -23,7 +23,7 @@ class FullPost extends Component {
         this.setState({ selected: response.data, deleteConfirm: 0 });
       })
       .catch(error => {
-        this.setState({ doesntExist: "Post does not exist." });
+        this.setState({ doesntExist: true });
       });
   }
 
@@ -48,7 +48,7 @@ class FullPost extends Component {
   render() {
     let display = <p>Loading...</p>;
     if (this.state.doesntExist) {
-      display = <p>{this.state.doesntExist}</p>;
+      display = <p>404</p>;
     }
     if (this.state.selected) {
       let { date, imageUrl, text, title, imageUser } = this.state.selected;
