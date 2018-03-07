@@ -36,11 +36,18 @@ class Gallery extends Component {
         }`
       )
       .then(res => {
-        this.setState({ selectedImage: res.data });
-        this.props.onImageSelect(
-          this.state.selectedImage.urls.full,
-          this.state.selectedImage.user.username
+        console.log("res.data.urls.full,: ", res.data.urls.full);
+        console.log("res.data.user.name,: ", res.data.user.name);
+        console.log(
+          "res.data.links.download_location: ",
+          res.data.links.download_location
         );
+        this.props.onImageSelect(
+          res.data.urls.full,
+          res.data.user.name,
+          res.data.links.download_location
+        );
+        this.setState({ selectedImage: res.data });
       })
       .catch(err => {
         console.log("Error happened during fetching!", err);
@@ -49,11 +56,12 @@ class Gallery extends Component {
 
   onClickHandler = index => {
     let { images } = this.state;
-    this.setState({ selectedImage: images[index] });
     this.props.onImageSelect(
       images[index].urls.regular,
-      images[index].user.username
+      images[index].user.name,
+      images[index].links.download_location
     );
+    this.setState({ selectedImage: images[index] });
   };
 
   render() {

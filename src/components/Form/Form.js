@@ -12,7 +12,8 @@ class Form extends Component {
       title: "",
       text: "",
       imageUrl: "",
-      imageUser: ""
+      imageUser: "",
+      imageDownloadLocation: ""
     };
   }
 
@@ -28,7 +29,17 @@ class Form extends Component {
   }
 
   onSubmitHandler = () => {
-    let { title, text, imageUrl, imageUser } = this.state;
+    let {
+      title,
+      text,
+      imageUrl,
+      imageUser,
+      imageDownloadLocation
+    } = this.state;
+
+    axios.get(
+      imageDownloadLocation + "?client_id=" + process.env.REACT_APP_CLIENT_ID
+    );
     if (!(title === "" || text === "" || imageUrl === "")) {
       if (this.props.match.url === "/journal/new") {
         axios
@@ -75,8 +86,9 @@ class Form extends Component {
     this.setState({ text: e.target.value });
   };
 
-  onImageSelectedHandler = (imageUrl, imageUser) => {
-    this.setState({ imageUrl, imageUser });
+  onImageSelectedHandler = (imageUrl, imageUser, imageDownloadLocation) => {
+    console.log("fired");
+    this.setState({ imageUrl, imageUser, imageDownloadLocation });
   };
 
   render() {
