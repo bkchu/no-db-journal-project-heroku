@@ -49,14 +49,14 @@ body {
 }
 
 .Header nav {
-  max-width: 65%;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 @media screen and (min-width: 320px) {
   .Header nav {
-    max-width: 80%;
+    max-width: 90%;
   }
 }
 
@@ -89,7 +89,8 @@ body {
 
 @media screen and (min-width: 320px) {
   .body {
-    max-width: 80%;
+    max-width: 90%;
+    margin: 0 auto;
   }
 }
 
@@ -120,11 +121,11 @@ body {
 }
 
 .Post {
-  width: 200px;
+  width: 100%;
   min-height: 500px;
+  margin-bottom: 10px;
   justify-content: space-between;
 
-  margin: 0 10px 10px 0;
   cursor: pointer;
   box-shadow: var(--box-shadow);
   transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -139,6 +140,7 @@ body {
 @media screen and (min-width: 850px) {
   .Post {
     width: 48%;
+    margin: 0 10px 10px 0;
   }
 }
 @media screen and (min-width: 1250px) {
@@ -354,39 +356,54 @@ body {
   border-radius: 50%;
 }
 
-.FullPost__button.FullPost__button--edit:hover {
-  color: rgba(0, 0, 0, 0.68);
-  border: 1px solid var(--gray);
+.FullPost__button.FullPost__button--edit:hover,
+.FullPost__button.FullPost__button--edit:active {
+  background: none;
+  color: rgba(98, 199, 54, 0.68);
+  border: 1px solid rgba(98, 199, 54, 0.68);
 }
 
-.FullPost__button.FullPost__button--delete:hover {
-  color: rgba(0, 0, 0, 0.68);
-  border: 1px solid var(--gray);
+.FullPost__button.FullPost__button--delete:hover,
+.FullPost__button.FullPost__button--delete:active {
+  background: none;
+  color: rgb(243, 103, 103);
+  border: 1px solid rgb(243, 103, 103);
 }
 
 .FullPost__button:active {
   background-color: var(--light-gray);
 }
-
 @media screen and (max-width: 600px) {
   .FullPost__buttons {
-    position: absolute;
-    right: -30px;
-    top: 135px;
-
+    position: static;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .FullPost__buttons:first-child {
+    flex: 1;
+    width: 0;
   }
 
   .FullPost__button {
+    width: 0;
+    flex: 1;
     height: 40px;
-    width: 40px;
     padding: 14px;
-    margin-top: 15px;
+    margin-top: 0;
+    border-radius: 0;
 
     border: 1px solid var(--light-gray);
     color: var(--light-gray);
-    border-radius: 50%;
+  }
+
+  .FullPost__button--edit {
+    width: 100%;
+    border-radius: 5px 0 0 0;
+  }
+  .FullPost__button--delete {
+    border-radius: 0 5px 0 0;
   }
 }
 

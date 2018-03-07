@@ -54,11 +54,18 @@ class FullPost extends Component {
       let { date, imageUrl, text, title, imageUser } = this.state.selected;
       display = (
         <div className="FullPost">
+          <div className="FullPost__title">{title}</div>
+          <div className="FullPost__date">
+            {moment(date).format("MMM DD, YYYY")}
+          </div>
           <div className="FullPost__buttons">
             <Link
               to={{
                 pathname: "/journal/edit",
                 search: "?id=" + this.props.match.params.id
+              }}
+              style={{
+                flex: "1"
               }}
             >
               <Button
@@ -74,10 +81,6 @@ class FullPost extends Component {
             >
               <FontAwesome name="trash" />
             </Button>
-          </div>
-          <div className="FullPost__title">{title}</div>
-          <div className="FullPost__date">
-            {moment(date).format("MMM DD, YYYY")}
           </div>
           <img className="FullPost__image" src={imageUrl} alt="" />
           <p className="FullPost__image-user">
