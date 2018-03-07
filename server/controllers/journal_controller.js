@@ -62,7 +62,7 @@ const axios = require("axios");
 //     imageUser: "bkchuu"
 //   }
 // ];
-let id = 1;
+let numPosts = 0;
 let parentObj = {};
 const addPost = (req, res) => {
   let { title, text, imageUrl, imageUser } = req.body;
@@ -78,7 +78,7 @@ const addPost = (req, res) => {
   // id++;
   // res.status(200).send(posts);
   let body = {
-    id,
+    id: numPosts + 1,
     title,
     text,
     imageUrl,
@@ -88,7 +88,6 @@ const addPost = (req, res) => {
   axios
     .post("https://react-journal-3c242.firebaseio.com/posts.json", body)
     .then(response => {
-      id++;
       res.status(200).send();
     })
     .catch(error => {
@@ -103,9 +102,16 @@ const getPosts = (req, res) => {
     .then(response => {
       parentObj = { ...response.data };
       let { data } = response;
+      let i = 0;
+
       for (let key in data) {
         posts.unshift(data[key]);
+
+        if (data.hasOwnProperty(key)) {
+          i++;
+        }
       }
+      numPosts = i;
       res.status(200).send(posts);
     })
     .catch(err => {
