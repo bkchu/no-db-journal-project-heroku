@@ -13,6 +13,7 @@ class Form extends Component {
       text: "",
       imageUrl: "",
       imageUser: "",
+      imageUserTag: "",
       imageDownloadLocation: ""
     };
   }
@@ -22,8 +23,8 @@ class Form extends Component {
       let searchParam = new URLSearchParams(this.props.location.search);
       let idToGet = searchParam.get("id");
       axios.get("/api/journal/" + idToGet).then(response => {
-        let { title, text, imageUrl, imageUser } = response.data;
-        this.setState({ title, text, imageUrl, imageUser });
+        let { title, text, imageUrl, imageUser, imageUserTag } = response.data;
+        this.setState({ title, text, imageUrl, imageUser, imageUserTag });
       });
     }
   }
@@ -34,6 +35,8 @@ class Form extends Component {
       text,
       imageUrl,
       imageUser,
+      imageUserTag,
+
       imageDownloadLocation
     } = this.state;
 
@@ -43,7 +46,13 @@ class Form extends Component {
     if (!(title === "" || text === "" || imageUrl === "")) {
       if (this.props.match.url === "/journal/new") {
         axios
-          .post("/api/journal", { title, text, imageUrl, imageUser })
+          .post("/api/journal", {
+            title,
+            text,
+            imageUrl,
+            imageUser,
+            imageUserTag
+          })
           .then(response => {
             this.props.history.push("/");
           })
@@ -54,7 +63,13 @@ class Form extends Component {
         let searchParam = new URLSearchParams(this.props.location.search);
         let idToGet = searchParam.get("id");
         axios
-          .put("/api/journal/" + idToGet, { title, text, imageUrl, imageUser })
+          .put("/api/journal/" + idToGet, {
+            title,
+            text,
+            imageUrl,
+            imageUser,
+            imageUserTag
+          })
           .then(response => {
             this.props.history.push("/journal/" + idToGet);
           })
@@ -86,9 +101,14 @@ class Form extends Component {
     this.setState({ text: e.target.value });
   };
 
-  onImageSelectedHandler = (imageUrl, imageUser, imageDownloadLocation) => {
+  onImageSelectedHandler = (
+    imageUrl,
+    imageUser,
+    imageUserTag,
+    imageDownloadLocation
+  ) => {
     console.log("fired");
-    this.setState({ imageUrl, imageUser, imageDownloadLocation });
+    this.setState({ imageUrl, imageUser, imageUserTag, imageDownloadLocation });
   };
 
   render() {

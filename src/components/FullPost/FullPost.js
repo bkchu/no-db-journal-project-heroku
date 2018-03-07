@@ -51,7 +51,14 @@ class FullPost extends Component {
       display = <p>404</p>;
     }
     if (this.state.selected) {
-      let { date, imageUrl, text, title, imageUser } = this.state.selected;
+      let {
+        date,
+        imageUrl,
+        text,
+        title,
+        imageUser,
+        imageUserTag
+      } = this.state.selected;
       display = (
         <div className="FullPost">
           <div className="FullPost__title">{title}</div>
@@ -87,7 +94,7 @@ class FullPost extends Component {
             Photo by{" "}
             <a
               className="image__link"
-              href={`https://unsplash.com/@${imageUser}?utm_source=react-journal&utm_medium=referral`}
+              href={`https://unsplash.com/@${imageUserTag}?utm_source=react-journal&utm_medium=referral`}
             >
               {imageUser}
             </a>{" "}

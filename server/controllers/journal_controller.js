@@ -65,7 +65,7 @@ const axios = require("axios");
 let numPosts = 0;
 let parentObj = {};
 const addPost = (req, res) => {
-  let { title, text, imageUrl, imageUser } = req.body;
+  let { title, text, imageUrl, imageUser, imageUserTag } = req.body;
   // posts.unshift({
   //   id: id,
   //   title,
@@ -83,7 +83,8 @@ const addPost = (req, res) => {
     text,
     imageUrl,
     date: moment(),
-    imageUser
+    imageUser,
+    imageUserTag
   };
   axios
     .post("https://react-journal-3c242.firebaseio.com/posts.json", body)
@@ -161,6 +162,7 @@ const updatePost = (req, res) => {
         id: parentObj[theKey].id,
         imageUrl: req.body.imageUrl || parentObj[theKey].imageUrl,
         imageUser: req.body.imageUser || parentObj[theKey].imageUser,
+        imageUserTag: req.body.imageUserTag || parentObj[theKey].imageUserTag,
         text: req.body.text || parentObj[theKey].text,
         title: req.body.title || parentObj[theKey].title
       })

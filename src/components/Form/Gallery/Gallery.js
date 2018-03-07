@@ -39,6 +39,7 @@ class Gallery extends Component {
         this.props.onImageSelect(
           res.data.urls.full,
           res.data.user.name,
+          res.data.user.username,
           res.data.links.download_location
         );
         this.setState({ selectedImage: res.data });
@@ -53,6 +54,7 @@ class Gallery extends Component {
     this.props.onImageSelect(
       images[index].urls.regular,
       images[index].user.name,
+      images[index].user.username,
       images[index].links.download_location
     );
     this.setState({ selectedImage: images[index] });
