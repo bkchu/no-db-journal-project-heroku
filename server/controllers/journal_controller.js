@@ -62,7 +62,7 @@ const axios = require("axios");
 //     imageUser: "bkchuu"
 //   }
 // ];
-let id = 0;
+let id = 1;
 let parentObj = {};
 const addPost = (req, res) => {
   let { title, text, imageUrl, imageUser } = req.body;
