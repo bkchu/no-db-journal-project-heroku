@@ -122,7 +122,11 @@ const getPost = (req, res) => {
       for (let key in data) {
         posts.unshift(data[key]);
       }
-      res.status(200).send(posts[posts.length - req.params.id]);
+      if (req.params.id <= 0 || req.params.id > posts.length) {
+        res.status(404).json({ error: "Post does not exist" });
+      } else {
+        res.status(200).send(posts[posts.length - req.params.id]);
+      }
     })
     .catch(err => {
       console.log(error);
