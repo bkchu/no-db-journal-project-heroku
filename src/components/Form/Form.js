@@ -107,7 +107,6 @@ class Form extends Component {
     imageUserTag,
     imageDownloadLocation
   ) => {
-    console.log("fired");
     this.setState({ imageUrl, imageUser, imageUserTag, imageDownloadLocation });
   };
 
